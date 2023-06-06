@@ -1,4 +1,5 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import Link from "next/link";
 
 export const ThirdSection = () => {
   return (
@@ -38,9 +39,11 @@ export const ThirdSection = () => {
                 alignItems: "center",
               }}
             >
-              <Button variant="outlined" color="secondary">
-                Get started
-              </Button>
+              <Link href="/signup">
+                <Button variant="outlined" color="secondary">
+                  Get started
+                </Button>
+              </Link>
             </Box>
           </Grid>
         </Grid>

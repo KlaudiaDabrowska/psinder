@@ -1,4 +1,5 @@
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import { SignupBtn } from "../common/SingupBtn";
 
 export const FirstSection = () => {
   return (
@@ -30,9 +31,7 @@ export const FirstSection = () => {
                 alignItems: "center",
               }}
             >
-              <Button variant="contained" color="secondary">
-                Register
-              </Button>
+              <SignupBtn isInNavbar={false} />
             </Box>
           </Grid>
           <Grid

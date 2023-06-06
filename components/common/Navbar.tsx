@@ -12,6 +12,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import PetsIcon from "@mui/icons-material/Pets";
 import { Grid } from "@mui/material";
+import Link from "next/link";
+import { SignupBtn } from "./SingupBtn";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -31,9 +33,21 @@ export const Navbar = () => {
   const isLoggin = false;
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#fff" }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: "#fff",
+        borderBottom: 1,
+        borderColor: "#bdbdbd64",
+      }}
+    >
+      <Container>
+        <Toolbar
+          disableGutters
+          sx={{
+            justifyContent: "space-between",
+          }}
+        >
           <Typography
             variant="h6"
             noWrap
@@ -110,19 +124,14 @@ export const Navbar = () => {
             ) : (
               <Grid container spacing={2}>
                 <Grid item>
-                  <Button variant="contained" color="secondary" size="small">
-                    Register
-                  </Button>
+                  <SignupBtn isInNavbar={true} />
                 </Grid>
                 <Grid item>
-                  <Button
-                    variant="outlined"
-                    color="secondary"
-                    sx={{ color: "#000" }}
-                    size="small"
-                  >
-                    Login
-                  </Button>
+                  <Link href="/login">
+                    <Button variant="outlined" color="secondary" size="small">
+                      Login
+                    </Button>
+                  </Link>
                 </Grid>
               </Grid>
             )}
