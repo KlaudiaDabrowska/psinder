@@ -1,5 +1,8 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import Link from "next/link";
+import catAndDog from "../../public/img/catanddog.png";
+import Image from "next/image";
+import { CustomImage } from "../common/CustomImage";
 
 export const ThirdSection = () => {
   return (
@@ -22,10 +25,27 @@ export const ThirdSection = () => {
               alignItems: "center",
             }}
           >
-            <Box>image</Box>
+            <CustomImage src={catAndDog} alt={"catAndDog"} />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Typography variant="h3" sx={{ mb: 3, textAlign: "center" }}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            direction="column"
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                mb: 3,
+                textAlign: "center",
+                fontWeight: { xs: "bold", md: "normal" },
+              }}
+            >
               More than characters
             </Typography>
             <Typography sx={{ mb: 2, textAlign: "center" }} variant="h6">

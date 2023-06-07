@@ -4,6 +4,9 @@ import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import ChatIcon from "@mui/icons-material/Chat";
 import MarkunreadMailboxIcon from "@mui/icons-material/MarkunreadMailbox";
 import KeyIcon from "@mui/icons-material/Key";
+import dog2 from "../../public/img/dogs2.png";
+import Image from "next/image";
+import { CustomImage } from "../common/CustomImage";
 
 export const SecondSection = () => {
   return (
@@ -13,7 +16,14 @@ export const SecondSection = () => {
       }}
     >
       <Container>
-        <Typography variant="h3" sx={{ mb: 3, textAlign: "center" }}>
+        <Typography
+          variant="h3"
+          sx={{
+            mb: 3,
+            textAlign: "center",
+            fontWeight: { xs: "bold", md: "normal" },
+          }}
+        >
           Match.Chat.Date
         </Typography>
         <Grid container spacing={2}>
@@ -48,7 +58,16 @@ export const SecondSection = () => {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Grid container direction="column">
-              <Grid item>IMAGE</Grid>
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <CustomImage src={dog2} alt={"dog2"} />
+              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={12} sm={4}>

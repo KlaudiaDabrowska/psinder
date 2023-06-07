@@ -32,7 +32,7 @@ export const Navbar = () => {
 
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-  const isLoggin = true;
+  const isLoggin = false;
 
   return (
     <AppBar
@@ -66,10 +66,12 @@ export const Navbar = () => {
             <PetsIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             psinder
           </Typography>
-          <MenuIcon
-            onClick={() => toggleDrawer(true)}
-            sx={{ display: { xs: "flex", md: "none" } }}
-          />
+          {isLoggin && (
+            <MenuIcon
+              onClick={() => toggleDrawer(true)}
+              sx={{ display: { xs: "flex", md: "none" } }}
+            />
+          )}
           <Typography
             variant="h5"
             component="a"

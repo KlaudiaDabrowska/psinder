@@ -1,20 +1,36 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
+import Image from "next/image";
 import { SignupBtn } from "../common/SingupBtn";
+import dog1 from "../../public/img/dogs1.png";
+import { CustomImage } from "../common/CustomImage";
 
 export const FirstSection = () => {
   return (
     <Box
       sx={{
         background: "radial-gradient(circle at 80% 50%, white, #EFE9F4 37%)",
-        py: 8,
+        py: { xs: 8, md: 6 },
       }}
     >
       <Container>
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={7}>
+          <Grid
+            item
+            xs={12}
+            sm={7}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+            direction="column"
+          >
             <Typography
               variant="h3"
-              sx={{ mb: 3, textAlign: { xs: "center", md: "left" } }}
+              sx={{
+                mb: 3,
+                textAlign: { xs: "center", md: "left" },
+                fontWeight: { xs: "bold", md: "normal" },
+              }}
             >
               It`s never too late to find match
             </Typography>
@@ -44,7 +60,7 @@ export const FirstSection = () => {
               alignItems: "center",
             }}
           >
-            <Box>image</Box>
+            <CustomImage src={dog1} alt={"dog1"} />
           </Grid>
         </Grid>
       </Container>

@@ -1,6 +1,8 @@
+import { CustomImage } from "@/components/common/CustomImage";
 import { Navbar } from "@/components/common/Navbar";
 import { LoginForm } from "@/components/forms/LoginForm";
-import { Box, Container, Grid, Paper, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import paw2 from "../public/img/paw2.png";
 
 const Login = () => {
   return (
@@ -23,11 +25,15 @@ const Login = () => {
         >
           Login
         </Typography>
-        <Grid container spacing={2}>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          display="flex"
+          spacing={4}
+        >
           <Grid item xs={12} sm={6}>
-            <Paper sx={{ py: 8, px: 2 }}>
-              <LoginForm />
-            </Paper>
+            <LoginForm />
           </Grid>
           <Grid
             item
@@ -38,7 +44,7 @@ const Login = () => {
               justifyContent: "center",
             }}
           >
-            image
+            <CustomImage src={paw2} alt={"paw"} />
           </Grid>
         </Grid>
       </Container>

@@ -1,6 +1,8 @@
+import { CustomImage } from "@/components/common/CustomImage";
 import { Navbar } from "@/components/common/Navbar";
 import { SignupForm } from "@/components/forms/SingupForm";
-import { Box, Container, Grid, Paper, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import paw from "../public/img/paw.png";
 
 const Signup = () => {
   return (
@@ -12,7 +14,6 @@ const Signup = () => {
     >
       <Navbar />
       <Container
-        maxWidth="md"
         sx={{
           my: { xs: 6, md: 8 },
         }}
@@ -23,7 +24,13 @@ const Signup = () => {
         >
           Sign up
         </Typography>
-        <Grid container spacing={2}>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          display="flex"
+          spacing={4}
+        >
           <Grid
             item
             xs={12}
@@ -33,12 +40,10 @@ const Signup = () => {
               justifyContent: "center",
             }}
           >
-            image
+            <CustomImage src={paw} alt={"paw"} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Paper sx={{ py: 8, px: 2 }}>
-              <SignupForm />
-            </Paper>
+            <SignupForm />
           </Grid>
         </Grid>
       </Container>
