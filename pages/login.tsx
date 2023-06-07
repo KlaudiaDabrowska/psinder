@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/common/Navbar";
 import { LoginForm } from "@/components/forms/LoginForm";
-import { SignupForm } from "@/components/forms/SingupForm";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 
 const Login = () => {
