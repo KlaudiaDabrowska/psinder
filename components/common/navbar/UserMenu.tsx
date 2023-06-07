@@ -64,11 +64,9 @@ export const UserMenu = () => {
               </Typography>
             </MenuItem>
             <Divider />
-            <MenuItem onClick={handleCloseUserMenu}>
-              <Typography textAlign="center" textTransform="capitalize">
-                Your doggos:
-              </Typography>
-            </MenuItem>
+            <Typography sx={{ ml: 2 }} textTransform="capitalize">
+              Your doggos:
+            </Typography>
             <UserMenuItem
               handleCloseUserMenu={handleCloseUserMenu}
               shouldHasAvatar={true}
