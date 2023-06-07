@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Container, Grid, TextField } from "@mui/material";
+import { FormError } from "./FormError";
 
 export const LoginForm = () => {
   const formik = useFormik({
@@ -32,7 +33,9 @@ export const LoginForm = () => {
               onBlur={formik.handleBlur}
               value={formik.values.email}
             />
-            {formik.errors.email && <div>{formik.errors.email}</div>}
+            {formik.errors.email && formik.touched.email && (
+              <FormError error={formik.errors.email} />
+            )}
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -45,7 +48,9 @@ export const LoginForm = () => {
               onBlur={formik.handleBlur}
               value={formik.values.password}
             />
-            {formik.errors.password && <div>{formik.errors.password}</div>}
+            {formik.errors.password && formik.touched.password && (
+              <FormError error={formik.errors.password} />
+            )}
           </Grid>
           <Grid
             item

@@ -1,3 +1,4 @@
+import { createNewUser } from "@/api/createUser";
 import { CustomImage } from "@/components/common/CustomImage";
 import { Navbar } from "@/components/common/Navbar";
 import { SignupForm } from "@/components/forms/SingupForm";

@@ -4,6 +4,7 @@ import { theme } from "@/styles/theme";
 import { ThemeProvider } from "@mui/material";
 import type { AppProps } from "next/app";
 import { createContext } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export interface IDrawerContext {
   isDrawerOpen: boolean;
@@ -17,12 +18,15 @@ export const DrawerContext = createContext<IDrawerContext>({
 
 export default function App({ Component, pageProps }: AppProps) {
   const { isDrawerOpen, toggleDrawer } = useDrawer();
+  const queryClient = new QueryClient();
 
   return (
-    <DrawerContext.Provider value={{ isDrawerOpen, toggleDrawer }}>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </DrawerContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <DrawerContext.Provider value={{ isDrawerOpen, toggleDrawer }}>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </DrawerContext.Provider>
+    </QueryClientProvider>
   );
 }
