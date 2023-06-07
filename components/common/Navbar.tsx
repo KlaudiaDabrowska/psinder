@@ -1,38 +1,18 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 import PetsIcon from "@mui/icons-material/Pets";
-import { Grid } from "@mui/material";
-import Link from "next/link";
-import { SignupBtn } from "./SingupBtn";
 import { DrawerContext } from "@/pages/_app";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import { UserMenu } from "./navbar/UserMenu";
 
 export const Navbar = () => {
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const { toggleDrawer } = useContext(DrawerContext);
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
-  const isLoggin = false;
+  const isLoggin = true;
 
   return (
     <AppBar
@@ -89,56 +69,7 @@ export const Navbar = () => {
             />
             psinder
           </Typography>
-
-          <Box sx={{ flexGrow: 0 }}>
-            {isLoggin ? (
-              <>
-                <Tooltip title="Open settings">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
-                    />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </>
-            ) : (
-              <Grid container spacing={2}>
-                <Grid item>
-                  <SignupBtn isInNavbar={true} />
-                </Grid>
-                <Grid item>
-                  <Link href="/login">
-                    <Button variant="outlined" color="secondary" size="small">
-                      Login
-                    </Button>
-                  </Link>
-                </Grid>
-              </Grid>
-            )}
-          </Box>
+          <UserMenu />
         </Toolbar>
       </Container>
     </AppBar>

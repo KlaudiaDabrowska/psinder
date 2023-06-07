@@ -24,17 +24,7 @@ export const SidebarMenu = ({ setSelectedItem }: { setSelectedItem: any }) => {
       }}
     >
       <Grid container sx={{ mb: 2 }}>
-        <Button
-          color="inherit"
-          sx={{
-            "&:hover": {
-              backgroundColor: "#f3ebf78a",
-              color: "#3c52b2",
-            },
-            textTransform: "inherit",
-          }}
-          onClick={() => setSelectedItem("user")}
-        >
+        <SidebarBtn href="profile">
           <Grid item>
             <Avatar
               alt="doggo"
@@ -45,22 +35,22 @@ export const SidebarMenu = ({ setSelectedItem }: { setSelectedItem: any }) => {
           <Grid item sx={{ display: "flex", alignItems: "center" }}>
             Clexi
           </Grid>
-        </Button>
+        </SidebarBtn>
       </Grid>
       <Divider />
-      <SidebarBtn setSelectedItem={setSelectedItem} item="messages">
+      <SidebarBtn href="messages">
         <EmailIcon sx={{ mr: 1 }} />
         Messages
       </SidebarBtn>
-      <SidebarBtn setSelectedItem={setSelectedItem} item="liked you">
+      <SidebarBtn href="likes">
         <FavoriteIcon sx={{ mr: 1 }} />
         Liked you
       </SidebarBtn>
-      <SidebarBtn setSelectedItem={setSelectedItem} item="favourities">
+      <SidebarBtn href="favourtie">
         <StarIcon sx={{ mr: 1 }} />
         Favourities
       </SidebarBtn>
-      <SidebarBtn setSelectedItem={setSelectedItem} item="friends">
+      <SidebarBtn href="friends">
         <PersonIcon sx={{ mr: 1 }} />
         Friends
       </SidebarBtn>

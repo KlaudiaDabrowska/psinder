@@ -1,9 +1,9 @@
 import { Navbar } from "@/components/common/Navbar";
 import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
 import { Box, Grid } from "@mui/material";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
-const Dashboard = () => {
+export const DashboardTemplate = ({ children }: { children: ReactNode }) => {
   const [selectedItem, setSelectedItem] = useState("");
 
   return (
@@ -23,22 +23,10 @@ const Dashboard = () => {
               justifyContent: "center",
             }}
           >
-            {selectedItem === "messages" ? (
-              <div>messages</div>
-            ) : selectedItem === "liked you" ? (
-              <div>liked you</div>
-            ) : selectedItem === "favourities" ? (
-              <div>fav</div>
-            ) : selectedItem === "friends" ? (
-              <div>friends</div>
-            ) : (
-              <div>something else</div>
-            )}
+            {children}
           </Grid>
         </Grid>
       </Box>
     </>
   );
 };
-
-export default Dashboard;
