@@ -1,20 +1,17 @@
 import { Navbar } from "@/components/common/Navbar";
-import { Sidebar } from "@/components/dashboard/Sidebar";
-import { Box, Container, Grid, Paper, Typography } from "@mui/material";
+import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
+import { Box, Grid } from "@mui/material";
 import { useState } from "react";
 
 const Dashboard = () => {
   const [selectedItem, setSelectedItem] = useState("");
 
-  console.log("selectedItem", selectedItem);
-
   return (
     <>
       <Navbar />
-      {/* desktop */}
       <Box sx={{ height: "100%" }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={3} md={2} lg={2}>
             <Sidebar setSelectedItem={setSelectedItem} />
           </Grid>
           <Grid

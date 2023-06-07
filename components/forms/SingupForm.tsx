@@ -1,19 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Container, Grid, TextField } from "@mui/material";
 
 export const SignupForm = () => {
   const formik = useFormik({
@@ -109,7 +96,7 @@ export const SignupForm = () => {
           >
             <Button type="submit" variant="outlined" color="secondary">
               Submit
-            </Button>{" "}
+            </Button>
           </Grid>
         </Grid>
       </form>

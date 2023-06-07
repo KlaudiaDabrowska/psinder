@@ -1,17 +1,8 @@
 import { Navbar } from "@/components/common/Navbar";
 import { SignupForm } from "@/components/forms/SingupForm";
-import {
-  Box,
-  Container,
-  Grid,
-  Paper,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Container, Grid, Paper, Typography } from "@mui/material";
 
 const Signup = () => {
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
-
   return (
     <Box
       sx={{

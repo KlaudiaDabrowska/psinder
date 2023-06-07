@@ -14,13 +14,13 @@ import PetsIcon from "@mui/icons-material/Pets";
 import { Grid } from "@mui/material";
 import Link from "next/link";
 import { SignupBtn } from "./SingupBtn";
-
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import { DrawerContext } from "@/pages/_app";
+import { useContext, useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export const Navbar = () => {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const { toggleDrawer } = useContext(DrawerContext);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -30,7 +30,9 @@ export const Navbar = () => {
     setAnchorElUser(null);
   };
 
-  const isLoggin = false;
+  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+  const isLoggin = true;
 
   return (
     <AppBar
@@ -58,32 +60,31 @@ export const Navbar = () => {
               display: { xs: "none", md: "flex" },
               fontFamily: "roboto",
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              letterSpacing: ".2rem",
             }}
           >
             <PetsIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             psinder
           </Typography>
-
+          <MenuIcon
+            onClick={() => toggleDrawer(true)}
+            sx={{ display: { xs: "flex", md: "none" } }}
+          />
           <Typography
             variant="h5"
-            noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
-              mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "roboto",
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              letterSpacing: ".2rem",
             }}
           >
-            <PetsIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <PetsIcon
+              sx={{ display: { xs: "flex", md: "none" }, ml: 2, mr: 1 }}
+            />
             psinder
           </Typography>
 
