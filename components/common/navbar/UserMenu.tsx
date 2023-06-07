@@ -38,7 +38,7 @@ export const UserMenu = () => {
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              Clexi The Sausagedog
+              <Typography variant="h5">Clexi The Sausagedog</Typography>
             </IconButton>
           </Tooltip>
           <Menu
