@@ -5,6 +5,7 @@ import { ThemeProvider } from "@mui/material";
 import type { AppProps } from "next/app";
 import { createContext } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { SessionProvider } from "next-auth/react";
 
 export interface IDrawerContext {
   isDrawerOpen: boolean;
@@ -21,12 +22,14 @@ export default function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <DrawerContext.Provider value={{ isDrawerOpen, toggleDrawer }}>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </DrawerContext.Provider>
-    </QueryClientProvider>
+    <SessionProvider session={pageProps.session}>
+      <QueryClientProvider client={queryClient}>
+        <DrawerContext.Provider value={{ isDrawerOpen, toggleDrawer }}>
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </DrawerContext.Provider>
+      </QueryClientProvider>
+    </SessionProvider>
   );
 }

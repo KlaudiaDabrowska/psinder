@@ -15,9 +15,12 @@ import { SignupBtn } from "../SingupBtn";
 import { UserMenuItem } from "./UserMenuItem";
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import { signOut, useSession } from "next-auth/react";
 
 export const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const { status } = useSession();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -29,11 +32,9 @@ export const UserMenu = () => {
 
   const settings = ["account", "logout"];
 
-  const isLoggin = false;
-
   return (
     <Box sx={{ flexGrow: 0 }}>
-      {isLoggin ? (
+      {status === "authenticated" ? (
         <>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -81,14 +82,20 @@ export const UserMenu = () => {
             />
 
             <Divider />
-            {settings.map((setting) => (
-              <UserMenuItem
-                handleCloseUserMenu={handleCloseUserMenu}
-                shouldHasAvatar={false}
-                href={setting}
-                key={setting}
-              />
-            ))}
+            <UserMenuItem
+              handleCloseUserMenu={handleCloseUserMenu}
+              shouldHasAvatar={false}
+              href={"account"}
+              key={"account"}
+            />
+            <Link href={"/"}>
+              <button
+                className="dropdown-item btn text-primary-500"
+                onClick={async () => await signOut()}
+              >
+                Log out
+              </button>
+            </Link>
           </Menu>
         </>
       ) : (

@@ -8,11 +8,13 @@ import { DrawerContext } from "@/pages/_app";
 import { useContext } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { UserMenu } from "./navbar/UserMenu";
+import { useSession } from "next-auth/react";
 
 export const Navbar = () => {
   const { toggleDrawer } = useContext(DrawerContext);
 
-  const isLoggin = false;
+  const { status } = useSession();
+  console.log(status);
 
   return (
     <AppBar
@@ -46,7 +48,7 @@ export const Navbar = () => {
             <PetsIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             psinder
           </Typography>
-          {isLoggin && (
+          {status === "authenticated" && (
             <MenuIcon
               onClick={() => toggleDrawer(true)}
               sx={{ display: { xs: "flex", md: "none" } }}

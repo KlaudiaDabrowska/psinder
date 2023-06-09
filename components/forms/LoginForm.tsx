@@ -2,8 +2,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button, Container, Grid, TextField } from "@mui/material";
 import { FormError } from "./FormError";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 export const LoginForm = () => {
+  const [loginError, setLoginError] = useState<string | undefined>();
+  const router = useRouter();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -15,7 +21,20 @@ export const LoginForm = () => {
     }),
 
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      signIn("credentials", {
+        email: values.email,
+        password: values.password,
+      })
+        .then(async (x) => {
+          if (x?.ok) {
+            await router.push("/");
+          } else {
+            setLoginError(x?.error);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
   return (
@@ -65,6 +84,7 @@ export const LoginForm = () => {
               Submit
             </Button>
           </Grid>
+          {loginError && <FormError error={loginError}></FormError>}
         </Grid>
       </form>
     </Container>
