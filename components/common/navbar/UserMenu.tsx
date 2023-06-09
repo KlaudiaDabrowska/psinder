@@ -29,7 +29,7 @@ export const UserMenu = () => {
 
   const settings = ["account", "logout"];
 
-  const isLoggin = true;
+  const isLoggin = false;
 
   return (
     <Box sx={{ flexGrow: 0 }}>

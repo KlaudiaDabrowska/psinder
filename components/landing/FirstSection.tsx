@@ -22,33 +22,41 @@ export const FirstSection = () => {
               display: "flex",
               justifyContent: "center",
             }}
-            direction="column"
           >
-            <Typography
-              variant="h3"
+            <Grid
+              container
+              direction="column"
               sx={{
-                mb: 3,
-                textAlign: { xs: "center", md: "left" },
-                fontWeight: { xs: "bold", md: "normal" },
-              }}
-            >
-              It`s never too late to find match
-            </Typography>
-            <Typography
-              sx={{ mb: 2, textAlign: { xs: "center", md: "left" } }}
-              variant="h5"
-            >
-              Find your soul doggo now
-            </Typography>
-            <Box
-              sx={{
-                display: { xs: "flex", md: "block" },
+                display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
               }}
             >
-              <SignupBtn isInNavbar={false} />
-            </Box>
+              <Typography
+                variant="h3"
+                sx={{
+                  mb: 3,
+                  textAlign: { xs: "center", md: "left" },
+                  fontWeight: { xs: "bold", md: "normal" },
+                }}
+              >
+                It`s never too late to find match
+              </Typography>
+              <Typography
+                sx={{ mb: 2, textAlign: { xs: "center", md: "left" } }}
+                variant="h5"
+              >
+                Find your soul doggo now
+              </Typography>
+              <Box
+                sx={{
+                  display: { xs: "flex", md: "block" },
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <SignupBtn isInNavbar={false} />
+              </Box>
+            </Grid>
           </Grid>
           <Grid
             item

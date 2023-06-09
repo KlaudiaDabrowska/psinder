@@ -12,7 +12,7 @@ import { UserMenu } from "./navbar/UserMenu";
 export const Navbar = () => {
   const { toggleDrawer } = useContext(DrawerContext);
 
-  const isLoggin = true;
+  const isLoggin = false;
 
   return (
     <AppBar

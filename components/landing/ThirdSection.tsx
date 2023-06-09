@@ -36,35 +36,36 @@ export const ThirdSection = () => {
               justifyContent: "center",
               alignItems: "center",
             }}
-            direction="column"
           >
-            <Typography
-              variant="h3"
-              sx={{
-                mb: 3,
-                textAlign: "center",
-                fontWeight: { xs: "bold", md: "normal" },
-              }}
-            >
-              More than characters
-            </Typography>
-            <Typography sx={{ mb: 2, textAlign: "center" }} variant="h6">
-              Chater makes being single more fun and rewarding by connecting
-              doggo who may not have otherwise met in real life.
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Link href="/signup">
-                <Button variant="outlined" color="secondary">
-                  Get started
-                </Button>
-              </Link>
-            </Box>
+            <Grid container direction="column">
+              <Typography
+                variant="h3"
+                sx={{
+                  mb: 3,
+                  textAlign: "center",
+                  fontWeight: { xs: "bold", md: "normal" },
+                }}
+              >
+                More than characters
+              </Typography>
+              <Typography sx={{ mb: 2, textAlign: "center" }} variant="h6">
+                Chater makes being single more fun and rewarding by connecting
+                doggo who may not have otherwise met in real life.
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Link href="/signup">
+                  <Button variant="outlined" color="secondary">
+                    Get started
+                  </Button>
+                </Link>
+              </Box>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

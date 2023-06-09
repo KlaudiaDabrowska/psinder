@@ -21,8 +21,13 @@ export const SignupForm = () => {
     isError,
     data,
   } = useMutation(createNewUser, {
-    onSuccess: () => {
+    onSuccess: (data) => {
       console.log("success!");
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log("error!");
+      console.log(error);
     },
   });
 
