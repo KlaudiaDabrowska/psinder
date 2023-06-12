@@ -24,6 +24,7 @@ export const LoginForm = () => {
       signIn("credentials", {
         email: values.email,
         password: values.password,
+        redirect: false,
       })
         .then(async (x) => {
           if (x?.ok) {

@@ -88,14 +88,16 @@ export const UserMenu = () => {
               href={"account"}
               key={"account"}
             />
-            <Link href={"/"}>
-              <button
-                className="dropdown-item btn text-primary-500"
-                onClick={async () => await signOut()}
+            <Divider />
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 1 }}>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={() => signOut({ callbackUrl: "/" })}
               >
                 Log out
-              </button>
-            </Link>
+              </Button>
+            </Box>
           </Menu>
         </>
       ) : (
