@@ -28,7 +28,7 @@ export const LoginForm = () => {
       })
         .then(async (x) => {
           if (x?.ok) {
-            await router.push("/");
+            await router.push("/dashboard/account");
           } else {
             setLoginError(x?.error);
           }

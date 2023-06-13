@@ -1,9 +1,29 @@
-import { createNewUser } from "@/api/createUser";
 import { CustomImage } from "@/components/common/CustomImage";
 import { Navbar } from "@/components/common/Navbar";
 import { SignupForm } from "@/components/forms/SingupForm";
 import { Box, Container, Grid, Typography } from "@mui/material";
+import { GetServerSidePropsContext } from "next";
+import { getServerSession } from "next-auth";
 import paw from "../public/img/paw.png";
+import { authOptions } from "./api/auth/[...nextauth]";
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const session = await getServerSession(ctx.req, ctx.res, authOptions);
+
+  console.log("SESJA Z SeRVER SIDE");
+  console.log(session);
+  if (session?.user) {
+    return {
+      redirect: {
+        destination: "/dashboard/account",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
 
 const Signup = () => {
   return (

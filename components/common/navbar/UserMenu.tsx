@@ -16,11 +16,12 @@ import { UserMenuItem } from "./UserMenuItem";
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { signOut, useSession } from "next-auth/react";
+import WavingHandIcon from "@mui/icons-material/WavingHand";
 
 export const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const { status } = useSession();
+  const { data: sessionData, status } = useSession();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -30,7 +31,8 @@ export const UserMenu = () => {
     setAnchorElUser(null);
   };
 
-  const settings = ["account", "logout"];
+  console.log("sesion");
+  console.log(sessionData);
 
   return (
     <Box sx={{ flexGrow: 0 }}>
@@ -38,8 +40,10 @@ export const UserMenu = () => {
         <>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              <Typography variant="h5">Clexi The Sausagedog</Typography>
+              <WavingHandIcon />
+              <Typography variant="h5" sx={{ ml: 1 }}>
+                Hi, {sessionData.user.name}!
+              </Typography>
             </IconButton>
           </Tooltip>
           <Menu

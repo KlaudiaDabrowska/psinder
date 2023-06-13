@@ -28,10 +28,10 @@ export const authOptions: NextAuthOptions = {
 
           if (loginResponse) {
             return {
-              // id: loginResponse.id,
-              // email: loginResponse.email,
-              // name: loginResponse.name,
-              // city: loginResponse.city,
+              id: loginResponse.id,
+              email: loginResponse.email,
+              name: loginResponse.name,
+              city: loginResponse.city,
               accessToken: loginResponse.token,
             } as LoggedInUserDetails;
           } else {
@@ -45,24 +45,25 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
-        // token.id = user.id;
-        // token.email = user.email;
-        // token.name = user.name;
-        // token.city = user.city;
+        token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
+        token.city = user.city;
         token.accessToken = user.accessToken;
       }
 
       return token;
     },
-    session: ({ session, token, user }) => {
+    session: ({ session, token }) => {
       if (token) {
-        // session.user.email = token.email;
-        // session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.name = token.name;
         session.user.accessToken = token.accessToken;
-        // session.user.city = token.city;
+        session.user.city = token.city;
       }
       return session;
     },

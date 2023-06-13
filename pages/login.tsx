@@ -2,7 +2,26 @@ import { CustomImage } from "@/components/common/CustomImage";
 import { Navbar } from "@/components/common/Navbar";
 import { LoginForm } from "@/components/forms/LoginForm";
 import { Box, Container, Grid, Typography } from "@mui/material";
+import { GetServerSidePropsContext } from "next";
+import { getSession } from "next-auth/react";
 import paw2 from "../public/img/paw2.png";
+
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const session = await getSession(ctx);
+
+  if (session?.user) {
+    return {
+      redirect: {
+        destination: "/dashboard/account",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 const Login = () => {
   return (
