@@ -2,10 +2,13 @@ import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { loginUser } from "@/api/loginUser";
-import jwt_decode from "jwt-decode";
-import { AdapterUser } from "next-auth/adapters";
+import { LoggedInUserDetails } from "@/lib/types/ILoggedInUserDetails";
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -24,10 +27,13 @@ export const authOptions: NextAuthOptions = {
           const loginResponse = await loginUser(userLoginData as any);
 
           if (loginResponse) {
-            const decodedJwt = jwt_decode(loginResponse.token);
             return {
-              email: decodedJwt!.email,
-            } as AdapterUser;
+              // id: loginResponse.id,
+              // email: loginResponse.email,
+              // name: loginResponse.name,
+              // city: loginResponse.city,
+              accessToken: loginResponse.token,
+            } as LoggedInUserDetails;
           } else {
             throw new Error(
               "The login details you provided are incorrect, or you haven't confirmed your email yet. Please verify your credentials and ensure that you have checked your email inbox, including the SPAM folder."
@@ -39,21 +45,25 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  session: {
-    maxAge: 60 * 24 * 30 * 60,
-    strategy: "jwt",
-  },
-  jwt: {
-    maxAge: 60 * 24 * 30 * 60,
-  },
   callbacks: {
-    session: async ({ session, user, token }) => {
-      console.log("USER");
-      console.log(user);
-      console.log("token");
-      console.log(token);
-      console.log("session");
-      console.log(session);
+    jwt: async ({ token, user }) => {
+      if (user) {
+        // token.id = user.id;
+        // token.email = user.email;
+        // token.name = user.name;
+        // token.city = user.city;
+        token.accessToken = user.accessToken;
+      }
+
+      return token;
+    },
+    session: ({ session, token, user }) => {
+      if (token) {
+        // session.user.email = token.email;
+        // session.user.name = token.name;
+        session.user.accessToken = token.accessToken;
+        // session.user.city = token.city;
+      }
       return session;
     },
   },

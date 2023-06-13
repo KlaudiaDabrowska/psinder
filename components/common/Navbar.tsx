@@ -13,8 +13,9 @@ import { useSession } from "next-auth/react";
 export const Navbar = () => {
   const { toggleDrawer } = useContext(DrawerContext);
 
-  const { status } = useSession();
+  const { data, status } = useSession();
   console.log(status);
+  console.log(data);
 
   return (
     <AppBar
