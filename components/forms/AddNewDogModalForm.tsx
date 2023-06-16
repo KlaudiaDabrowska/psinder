@@ -8,11 +8,13 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { useFormik } from "formik";
+import { useFormik, Formik } from "formik";
 import { useMutation } from "react-query";
 import * as Yup from "yup";
 import { FormError } from "./FormError";
 import { useSession } from "next-auth/react";
+import { useDropzone } from "react-dropzone";
+import { ImageDropzone } from "./ImageDropzone";
 
 export const AddNewDogModalForm = ({
   open,
@@ -55,96 +57,96 @@ export const AddNewDogModalForm = ({
     }
   );
 
-  const formik = useFormik({
-    initialValues: {
-      dogName: "",
-      dogDescription: "",
-      images: [],
-    },
-    validationSchema: Yup.object({
-      dogName: Yup.string().required("Required"),
-      images: Yup.array().required("Required"),
-    }),
-
-    onSubmit: (values) => {
-      addANewDogMutation({
-        dogName: values.dogName,
-        dogDescription: values.dogDescription,
-      });
-    },
-  });
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+    <Formik
+      initialValues={{ dogName: "", dogDescription: "", images: [] }}
+      validationSchema={Yup.object({
+        dogName: Yup.string().required("Required"),
+        dogDescription: Yup.string().required("Required"),
+        images: Yup.array().required("Required"),
+      })}
+      onSubmit={(values) => {
+        addANewDogMutation({
+          dogName: values.dogName,
+          dogDescription: values.dogDescription,
+        });
+      }}
     >
-      <Box sx={style}>
-        <Typography
-          id="modal-modal-title"
-          variant="h4"
-          sx={{ mb: 2 }}
-          textAlign="center"
+      {(formik) => (
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
         >
-          Add a new dog
-        </Typography>
-        <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                label="Dog name"
-                fullWidth
-                id="dogName"
-                name="dogName"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.dogName}
-                sx={{
-                  backgroundColor: "#fff",
-                }}
-              />
-              {formik.errors.dogName && formik.touched.dogName && (
-                <FormError error={formik.errors.dogName} />
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Dog description"
-                fullWidth
-                id="dogDescription"
-                name="dogDescription"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.dogDescription}
-                sx={{
-                  backgroundColor: "#fff",
-                }}
-                multiline
-              />
-            </Grid>
-            <Grid item xs={12}>
-              dropzone
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+          <Box sx={style}>
+            <Typography
+              id="modal-modal-title"
+              variant="h4"
+              sx={{ mb: 2 }}
+              textAlign="center"
             >
-              <Button type="submit" variant="outlined" color="secondary">
-                Submit
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
-    </Modal>
+              Add a new dog
+            </Typography>
+            <form onSubmit={formik.handleSubmit}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    label="Dog name"
+                    fullWidth
+                    id="dogName"
+                    name="dogName"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.dogName}
+                    sx={{
+                      backgroundColor: "#fff",
+                    }}
+                  />
+                  {formik.errors.dogName && formik.touched.dogName && (
+                    <FormError error={formik.errors.dogName} />
+                  )}
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    label="Dog description"
+                    fullWidth
+                    id="dogDescription"
+                    name="dogDescription"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.dogDescription}
+                    sx={{
+                      backgroundColor: "#fff",
+                    }}
+                    multiline
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography>Dog images</Typography>
+                  <ImageDropzone />
+                </Grid>
+
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Button type="submit" variant="outlined" color="secondary">
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </Box>
+        </Modal>
+      )}
+    </Formik>
   );
 };
