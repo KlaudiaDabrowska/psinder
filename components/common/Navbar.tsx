@@ -20,7 +20,7 @@ export const Navbar = () => {
       position="static"
       sx={{
         backgroundColor: "#fff",
-        borderBottom: 1,
+        borderBottom: 2,
         borderColor: "#bdbdbd64",
       }}
     >

@@ -88,9 +88,6 @@ export const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
-                sx={{
-                  backgroundColor: "#fff",
-                }}
               />
               {formik.errors.name && formik.touched.name && (
                 <FormError error={formik.errors.name} />
@@ -106,9 +103,6 @@ export const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.surname}
-                sx={{
-                  backgroundColor: "#fff",
-                }}
               />
               {formik.errors.surname && formik.touched.surname && (
                 <FormError error={formik.errors.surname} />
@@ -124,9 +118,6 @@ export const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
-                sx={{
-                  backgroundColor: "#fff",
-                }}
               />
               {formik.errors.email && formik.touched.email && (
                 <FormError error={formik.errors.email} />
@@ -142,9 +133,6 @@ export const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
-                sx={{
-                  backgroundColor: "#fff",
-                }}
               />
               {formik.errors.password && formik.touched.password && (
                 <FormError error={formik.errors.password} />
@@ -160,9 +148,6 @@ export const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.city}
-                sx={{
-                  backgroundColor: "#fff",
-                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -175,9 +160,6 @@ export const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.streetName}
-                sx={{
-                  backgroundColor: "#fff",
-                }}
               />
             </Grid>
             <Grid
