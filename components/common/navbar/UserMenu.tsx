@@ -8,6 +8,7 @@ import {
   Link,
   Menu,
   MenuItem,
+  Modal,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -17,6 +18,7 @@ import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { signOut, useSession } from "next-auth/react";
 import WavingHandIcon from "@mui/icons-material/WavingHand";
+import { AddNewDogModalForm } from "@/components/forms/AddNewDogModalForm";
 
 export const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -31,8 +33,9 @@ export const UserMenu = () => {
     setAnchorElUser(null);
   };
 
-  console.log("sesion");
-  console.log(sessionData);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Box sx={{ flexGrow: 0 }}>
@@ -62,12 +65,18 @@ export const UserMenu = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <MenuItem onClick={handleCloseUserMenu}>
+            <MenuItem
+              onClick={() => {
+                handleCloseUserMenu(), handleOpen();
+              }}
+            >
               <AddIcon />
               <Typography textAlign="center" textTransform="capitalize">
                 Add a new dog
               </Typography>
             </MenuItem>
+            <AddNewDogModalForm open={open} handleClose={handleClose} />
+
             <Divider />
             <Typography sx={{ ml: 2 }} textTransform="capitalize">
               Your doggos:

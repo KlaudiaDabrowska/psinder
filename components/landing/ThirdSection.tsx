@@ -8,8 +8,8 @@ export const ThirdSection = () => {
   return (
     <Box
       sx={{
-        background:
-          "linear-gradient(7deg, rgba(255,255,255,1) 37%, rgba(239,233,244,0.504359243697479) 78%)",
+        background: "radial-gradient(circle at 80% 50%, #EFE9F4, white 37%)",
+
         py: 6,
       }}
     >

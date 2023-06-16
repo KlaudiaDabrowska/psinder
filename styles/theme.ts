@@ -7,6 +7,9 @@ export const theme = responsiveFontSizes(
     },
     typography: {
       fontFamily: "Lato, sans-serif",
+      allVariants: {
+        color: "#000",
+      },
     },
   }),
   { factor: 4 }

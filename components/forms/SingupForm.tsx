@@ -68,9 +68,6 @@ export const SignupForm = () => {
         password: values.password,
         timeZoneId: values.timeZoneId,
       });
-
-      console.log("DATA PO SUBMICIE");
-      console.log(data);
     },
   });
 

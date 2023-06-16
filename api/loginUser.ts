@@ -1,13 +1,18 @@
+import { LoggedInUserDetails } from "@/lib/types/ILoggedInUserDetails";
 import { apiClient } from "../config/apiClient";
 
-interface user {
+export interface LoginRequest {
   email: string;
   password: string;
 }
 
-export const loginUser = async (user: user) => {
-  const response = await apiClient.post("/account/login", user, {
-    headers: { "Content-Type": "application/json" },
-  });
+export const loginUser = async (user: LoginRequest) => {
+  const response = await apiClient.post<LoggedInUserDetails>(
+    "/account/login",
+    user,
+    {
+      headers: { "Content-Type": "application/json" },
+    }
+  );
   return response.data;
 };

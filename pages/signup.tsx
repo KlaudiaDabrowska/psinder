@@ -10,8 +10,6 @@ import { authOptions } from "./api/auth/[...nextauth]";
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
 
-  console.log("SESJA Z SeRVER SIDE");
-  console.log(session);
   if (session?.user) {
     return {
       redirect: {
@@ -29,8 +27,8 @@ const Signup = () => {
   return (
     <Box
       sx={{
-        background:
-          "linear-gradient(7deg, rgba(255,255,255,1) 37%, rgba(239,233,244,0.504359243697479) 78%)",
+        background: "radial-gradient(circle at 80% 50%, #EFE9F4 37%, white)",
+        height: "100vh",
       }}
     >
       <Navbar />

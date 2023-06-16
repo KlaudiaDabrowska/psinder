@@ -132,7 +132,9 @@ const RowIcon = ({ children }: { children: ReactNode }) => {
 const RowTitle = ({ children }: { children: ReactNode }) => {
   return (
     <Grid item>
-      <Typography variant="h6">{children}</Typography>
+      <Typography variant="h6" color="#000">
+        {children}
+      </Typography>
     </Grid>
   );
 };
@@ -142,7 +144,8 @@ const RowDescription = ({ children }: { children: ReactNode }) => {
     <Grid item>
       <Typography
         variant="subtitle1"
-        sx={{ color: "#bdbdbd", textAlign: "center" }}
+        color="#bdbdbd"
+        sx={{ textAlign: "center" }}
       >
         {children}
       </Typography>

@@ -1,8 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { loginUser } from "@/api/loginUser";
-import { LoggedInUserDetails } from "@/lib/types/ILoggedInUserDetails";
+import { LoginRequest, loginUser } from "@/api/loginUser";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -21,10 +20,10 @@ export const authOptions: NextAuthOptions = {
         const userLoginData = {
           email: credentials?.email,
           password: credentials?.password,
-        };
+        } as LoginRequest;
 
         try {
-          const loginResponse = await loginUser(userLoginData as any);
+          const loginResponse = await loginUser(userLoginData);
 
           if (loginResponse) {
             return {
@@ -33,7 +32,7 @@ export const authOptions: NextAuthOptions = {
               name: loginResponse.name,
               city: loginResponse.city,
               accessToken: loginResponse.token,
-            } as LoggedInUserDetails;
+            };
           } else {
             throw new Error(
               "The login details you provided are incorrect, or you haven't confirmed your email yet. Please verify your credentials and ensure that you have checked your email inbox, including the SPAM folder."
