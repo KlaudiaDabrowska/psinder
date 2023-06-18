@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 export const LoginForm = () => {
-  const [loginError, setLoginError] = useState<string | undefined>();
+  const [loginError, setLoginError] = useState<boolean>(false);
   const router = useRouter();
 
   const formik = useFormik({
@@ -30,7 +30,7 @@ export const LoginForm = () => {
           if (x?.ok) {
             await router.push("/dashboard/account");
           } else {
-            setLoginError(x?.error);
+            setLoginError(true);
           }
         })
         .catch((err) => {
@@ -85,7 +85,11 @@ export const LoginForm = () => {
               Submit
             </Button>
           </Grid>
-          {loginError && <FormError error={loginError}></FormError>}
+          {loginError && (
+            <FormError
+              error={"Something went wrong. Please try again."}
+            ></FormError>
+          )}
         </Grid>
       </form>
     </Container>
