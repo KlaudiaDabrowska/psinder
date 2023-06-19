@@ -6,7 +6,7 @@ export const FormError = ({ error }: { error?: string }) => {
       <Typography
         variant="subtitle2"
         sx={{ color: "error.main", p: 0 }}
-        data-testId="errorMessage"
+        data-testid="errorMessage"
       >
         {error}
       </Typography>
