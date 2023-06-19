@@ -2,8 +2,12 @@ import { Box, Typography } from "@mui/material";
 
 export const FormError = ({ error }: { error?: string }) => {
   return (
-    <Box>
-      <Typography variant="subtitle2" sx={{ color: "error.main", p: 0 }}>
+    <Box data-testId="formError">
+      <Typography
+        variant="subtitle2"
+        sx={{ color: "error.main", p: 0 }}
+        data-testid="errorMessage"
+      >
         {error}
       </Typography>
     </Box>

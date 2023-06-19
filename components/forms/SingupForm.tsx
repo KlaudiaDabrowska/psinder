@@ -88,6 +88,7 @@ export const SignupForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
+                data-testId="signupName"
               />
               {formik.errors.name && formik.touched.name && (
                 <FormError error={formik.errors.name} />
@@ -171,7 +172,12 @@ export const SignupForm = () => {
                 alignItems: "center",
               }}
             >
-              <Button type="submit" variant="outlined" color="secondary">
+              <Button
+                type="submit"
+                variant="outlined"
+                color="secondary"
+                data-testId="submitSignupBtn"
+              >
                 Submit
               </Button>
             </Grid>

@@ -44,7 +44,7 @@ export const UserMenu = () => {
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <WavingHandIcon />
-              <Typography variant="h5" sx={{ ml: 1 }}>
+              <Typography variant="h5" sx={{ ml: 1 }} data-testid="helloUser">
                 Hi, {sessionData.user.name}!
               </Typography>
             </IconButton>
@@ -75,7 +75,7 @@ export const UserMenu = () => {
                 Add a new dog
               </Typography>
             </MenuItem>
-            <AddNewDogModalForm open={open} handleClose={handleClose} />
+            {/* <AddNewDogModalForm open={open} handleClose={handleClose} /> */}
 
             <Divider />
             <Typography sx={{ ml: 2 }} textTransform="capitalize">
@@ -114,7 +114,7 @@ export const UserMenu = () => {
           </Menu>
         </>
       ) : (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} data-testid="navbarBtnsContainer">
           <Grid item>
             <SignupBtn isInNavbar={true} />
           </Grid>

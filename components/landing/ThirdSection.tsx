@@ -1,7 +1,6 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import catAndDog from "../../public/img/catanddog.png";
-import Image from "next/image";
 import { CustomImage } from "../common/CustomImage";
 
 export const ThirdSection = () => {
