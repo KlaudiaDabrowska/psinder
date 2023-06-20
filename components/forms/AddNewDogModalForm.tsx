@@ -8,13 +8,14 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { useFormik, Formik } from "formik";
+import { useFormik, Formik, Field, FieldArray } from "formik";
 import { useMutation } from "react-query";
 import * as Yup from "yup";
 import { FormError } from "./FormError";
 import { useSession } from "next-auth/react";
 import { useDropzone } from "react-dropzone";
 import { ImageDropzone } from "./ImageDropzone";
+import { ImageArray } from "./ImageArray";
 
 export const AddNewDogModalForm = ({
   open,
@@ -63,12 +64,15 @@ export const AddNewDogModalForm = ({
       validationSchema={Yup.object({
         dogName: Yup.string().required("Required"),
         dogDescription: Yup.string().required("Required"),
-        images: Yup.array().required("Required"),
+        images: Yup.array().of(Yup.string().required("Required")),
       })}
       onSubmit={(values) => {
+        console.log("VALUES");
+        console.log(values);
         addANewDogMutation({
           dogName: values.dogName,
           dogDescription: values.dogDescription,
+          images: values.images,
         });
       }}
     >
@@ -100,9 +104,6 @@ export const AddNewDogModalForm = ({
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.dogName}
-                    sx={{
-                      backgroundColor: "#fff",
-                    }}
                   />
                   {formik.errors.dogName && formik.touched.dogName && (
                     <FormError error={formik.errors.dogName} />
@@ -118,15 +119,18 @@ export const AddNewDogModalForm = ({
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.dogDescription}
-                    sx={{
-                      backgroundColor: "#fff",
-                    }}
                     multiline
                   />
+                  {formik.errors.dogDescription &&
+                    formik.touched.dogDescription && (
+                      <FormError error={formik.errors.dogDescription} />
+                    )}
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography>Dog images</Typography>
-                  <ImageDropzone />
+                  <ImageArray />
+
+                  {/* <Typography>Dog images</Typography>
+                  <ImageDropzone /> */}
                 </Grid>
 
                 <Grid

@@ -8,7 +8,7 @@ export const Success = ({ children }: { children: ReactNode }) => {
     <Box
       sx={{
         background:
-          "linear-gradient(7deg, rgba(255,255,255,1) 37%, rgba(239,233,244,0.504359243697479) 78%)",
+          "linear-gradient(7deg, rgba(255,255,255,1) 37%, #EFE9F4 78%)",
         py: { xs: 8, md: 10 },
         height: "100%",
       }}

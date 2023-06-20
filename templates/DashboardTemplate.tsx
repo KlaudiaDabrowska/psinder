@@ -9,7 +9,12 @@ export const DashboardTemplate = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Navbar />
-      <Box sx={{ backgroundColor: "#fff" }}>
+      <Box
+        sx={{
+          background:
+            "linear-gradient(70deg, rgba(255,255,255,1) 37%, #EFE9F4 55%)",
+        }}
+      >
         <Grid container>
           <Grid item xs={12} sm={3} md={2} lg={2}>
             <Sidebar setSelectedItem={setSelectedItem} />
