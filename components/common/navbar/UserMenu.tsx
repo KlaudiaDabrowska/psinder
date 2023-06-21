@@ -14,14 +14,20 @@ import {
 } from "@mui/material";
 import { SignupBtn } from "../SingupBtn";
 import { UserMenuItem } from "./UserMenuItem";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { signOut, useSession } from "next-auth/react";
 import WavingHandIcon from "@mui/icons-material/WavingHand";
 import { AddNewDogModalForm } from "@/components/forms/AddNewDogModalForm";
+import { DogsContextData } from "@/context/DogsContext";
 
 export const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const dogsList = useContext(DogsContextData);
+
+  console.log("dog");
+  console.log(dogsList);
 
   const { data: sessionData, status } = useSession();
 
@@ -81,6 +87,15 @@ export const UserMenu = () => {
             <Typography sx={{ ml: 2 }} textTransform="capitalize">
               Your doggos:
             </Typography>
+            {dogsList?.dogs.map((dog) => (
+              <UserMenuItem
+                handleCloseUserMenu={handleCloseUserMenu}
+                shouldHasAvatar={true}
+                title={dog.name}
+                href="profile"
+                key={dog.id}
+              />
+            ))}
             <UserMenuItem
               handleCloseUserMenu={handleCloseUserMenu}
               shouldHasAvatar={true}

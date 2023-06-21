@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import { createContext } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { SessionProvider } from "next-auth/react";
+import { DogsContext } from "@/context/DogsContext";
 
 export interface IDrawerContext {
   isDrawerOpen: boolean;
@@ -24,11 +25,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
       <QueryClientProvider client={queryClient}>
-        <DrawerContext.Provider value={{ isDrawerOpen, toggleDrawer }}>
-          <ThemeProvider theme={theme}>
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </DrawerContext.Provider>
+        <DogsContext>
+          <DrawerContext.Provider value={{ isDrawerOpen, toggleDrawer }}>
+            <ThemeProvider theme={theme}>
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </DrawerContext.Provider>
+        </DogsContext>
       </QueryClientProvider>
     </SessionProvider>
   );
