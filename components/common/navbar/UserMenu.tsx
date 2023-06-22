@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Button,
   Divider,
@@ -8,7 +7,6 @@ import {
   Link,
   Menu,
   MenuItem,
-  Modal,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -19,21 +17,18 @@ import AddIcon from "@mui/icons-material/Add";
 import { signOut, useSession } from "next-auth/react";
 import WavingHandIcon from "@mui/icons-material/WavingHand";
 import { AddNewDogModalForm } from "@/components/forms/AddNewDogModalForm";
-import { DogsContextData } from "@/context/DogsContext";
-import { useDogsListState } from "@/state/useDogsListState";
+import { useDogsListState } from "@/lib/hooks/useDogsListState";
+import { DogIdContext } from "@/pages/_app";
 
 export const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  // const dogsList = useContext(DogsContextData);
+  const { setDogId } = useContext(DogIdContext);
 
-  // console.log("dog");
-  // console.log(dogsList);
-
-  const data = useDogsListState();
+  const dogsList = useDogsListState();
 
   console.log("dog");
-  console.log(data);
+  console.log(dogsList);
 
   const { data: sessionData, status } = useSession();
 
@@ -88,33 +83,24 @@ export const UserMenu = () => {
               </Typography>
             </MenuItem>
             <AddNewDogModalForm open={open} handleClose={handleClose} />
-
-            <Divider />
-            <Typography sx={{ ml: 2 }} textTransform="capitalize">
-              Your doggos:
-            </Typography>
-            {/* {dogsList?.dogs.map((dog) => (
-              <UserMenuItem
-                handleCloseUserMenu={handleCloseUserMenu}
-                shouldHasAvatar={true}
-                title={dog.name}
-                href="profile"
-                key={dog.id}
-              />
-            ))} */}
-            <UserMenuItem
-              handleCloseUserMenu={handleCloseUserMenu}
-              shouldHasAvatar={true}
-              title="Clexi"
-              href="profile"
-            />
-            <UserMenuItem
-              handleCloseUserMenu={handleCloseUserMenu}
-              shouldHasAvatar={true}
-              title="Srexi"
-              href="profile"
-            />
-
+            {dogsList && (
+              <>
+                <Divider />
+                <Typography sx={{ ml: 2 }} textTransform="capitalize">
+                  Your doggos:
+                </Typography>
+                {dogsList?.dogs?.map((dog) => (
+                  <UserMenuItem
+                    handleCloseUserMenu={handleCloseUserMenu}
+                    shouldHasAvatar={true}
+                    title={dog.name}
+                    href="profile"
+                    dogId={dog.id}
+                    key={dog.id}
+                  />
+                ))}
+              </>
+            )}
             <Divider />
             <UserMenuItem
               handleCloseUserMenu={handleCloseUserMenu}

@@ -1,3 +1,4 @@
+import { DogIdContext } from "@/pages/_app";
 import { DashboardTemplate } from "@/templates/DashboardTemplate";
 import {
   Avatar,
@@ -12,6 +13,7 @@ import {
 } from "@mui/material";
 import { GetServerSidePropsContext } from "next";
 import { getSession, useSession } from "next-auth/react";
+import { useContext } from "react";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const session = await getSession(ctx);
@@ -31,6 +33,11 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
 const Account = () => {
   const { data: sessionData, status } = useSession();
+
+  const { dogId } = useContext(DogIdContext);
+
+  console.log("DOG ID W ACCOUNT");
+  console.log(dogId);
 
   return (
     <DashboardTemplate>

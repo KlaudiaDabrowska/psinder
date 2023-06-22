@@ -14,8 +14,8 @@ interface IDog {
   votes: string[];
 }
 
-export const getListOfDogs = async (token: JWT) => {
-  const response = await apiClient.get<IDogsData>("/dog/my-dogs", {
+export const getDogInfo = async (token: JWT, dogId: string) => {
+  const response = await apiClient.get<any>(`/dog/my-dogs/${dogId}`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,

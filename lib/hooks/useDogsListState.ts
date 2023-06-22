@@ -4,10 +4,8 @@ import { useQuery } from "react-query";
 
 export const useDogsListState = () => {
   const { data: sessionData } = useSession();
-  console.log("sesja");
-  console.log(sessionData);
 
-  const { data } = useQuery(
+  const { data: dogsList } = useQuery(
     "dogsList",
     () => getListOfDogs(sessionData?.user.accessToken),
     {
@@ -15,5 +13,5 @@ export const useDogsListState = () => {
     }
   );
 
-  return data;
+  return dogsList;
 };

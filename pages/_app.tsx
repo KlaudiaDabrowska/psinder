@@ -6,7 +6,7 @@ import type { AppProps } from "next/app";
 import { createContext } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { SessionProvider } from "next-auth/react";
-import { DogsContext } from "@/context/DogsContext";
+import useDogId from "@/lib/hooks/useDogId";
 
 export interface IDrawerContext {
   isDrawerOpen: boolean;
@@ -18,20 +18,31 @@ export const DrawerContext = createContext<IDrawerContext>({
   toggleDrawer: () => {},
 });
 
+export interface IDogIdContext {
+  dogId: string;
+  setDogId: (value: string) => void;
+}
+
+export const DogIdContext = createContext<IDogIdContext>({
+  dogId: "",
+  setDogId: () => {},
+});
+
 export default function App({ Component, pageProps }: AppProps) {
   const { isDrawerOpen, toggleDrawer } = useDrawer();
+  const { dogId, setDogIdValue } = useDogId();
   const queryClient = new QueryClient();
 
   return (
     <SessionProvider session={pageProps.session}>
       <QueryClientProvider client={queryClient}>
-        <DogsContext>
-          <DrawerContext.Provider value={{ isDrawerOpen, toggleDrawer }}>
+        <DrawerContext.Provider value={{ isDrawerOpen, toggleDrawer }}>
+          <DogIdContext.Provider value={{ dogId, setDogId: setDogIdValue }}>
             <ThemeProvider theme={theme}>
               <Component {...pageProps} />
             </ThemeProvider>
-          </DrawerContext.Provider>
-        </DogsContext>
+          </DogIdContext.Provider>
+        </DrawerContext.Provider>
       </QueryClientProvider>
     </SessionProvider>
   );
