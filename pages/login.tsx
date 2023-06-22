@@ -5,6 +5,7 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import paw2 from "../public/img/paw2.png";
+import { Error } from "@/components/common/Error";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const session = await getSession(ctx);

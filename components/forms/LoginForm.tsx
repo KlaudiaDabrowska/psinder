@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Container, Grid, TextField } from "@mui/material";
+import { Alert, Button, Container, Grid, TextField } from "@mui/material";
 import { FormError } from "./FormError";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
@@ -34,7 +34,7 @@ export const LoginForm = () => {
           }
         })
         .catch((err) => {
-          console.log(err);
+          setLoginError(true);
         });
     },
   });
@@ -86,9 +86,19 @@ export const LoginForm = () => {
             </Button>
           </Grid>
           {loginError && (
-            <FormError
-              error={"Something went wrong. Please try again."}
-            ></FormError>
+            <Grid
+              item
+              xs={12}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Alert severity="error">
+                Oops! Something went wrong. Please try again.
+              </Alert>
+            </Grid>
           )}
         </Grid>
       </form>
