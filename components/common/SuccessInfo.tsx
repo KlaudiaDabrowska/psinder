@@ -1,7 +1,8 @@
 import { Grid, Typography } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { ReactNode } from "react";
 
-export const SuccessfullRegister = () => {
+export const SuccessInfo = ({ children }: { children: ReactNode }) => {
   return (
     <Grid
       container
@@ -15,8 +16,7 @@ export const SuccessfullRegister = () => {
       </Grid>
       <Grid item>
         <Typography variant="h6" sx={{ textAlign: "center" }}>
-          Congratulations! You have successfully registered. Please check your
-          email for a verification message containing a confirmation link.
+          {children}
         </Typography>
       </Grid>
     </Grid>

@@ -9,18 +9,18 @@ interface IInitialValues {
   images: string[];
 }
 export const ImageArray = () => {
-  const { values, setFieldValue, handleBlur, handleChange, errors, touched } =
+  const { values, setFieldValue, handleBlur, errors, touched } =
     useFormikContext<IInitialValues>();
 
   const handleImagesChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const images = event.target.value.split("\n").filter(Boolean);
+    const images = event.target.value.split(", ");
     setFieldValue("images", images);
   };
 
   return (
     <>
       <TextField
-        label="Dog images"
+        label="Dog images (separate with a comma)"
         fullWidth
         id="images"
         name="images"
