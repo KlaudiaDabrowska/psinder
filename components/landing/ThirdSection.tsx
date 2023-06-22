@@ -9,7 +9,6 @@ export const ThirdSection = () => {
     <Box
       sx={{
         background: "radial-gradient(circle at 80% 50%, #EFE9F4, white 37%)",
-
         py: 6,
       }}
     >

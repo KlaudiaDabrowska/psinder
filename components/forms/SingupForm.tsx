@@ -1,13 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Container, Grid, TextField } from "@mui/material";
 import { useMutation } from "react-query";
 import { createNewUser } from "@/api/createUser";
 import Alert from "@mui/material/Alert";
@@ -19,17 +12,7 @@ export const SignupForm = () => {
     mutate: createNewUserMutation,
     isSuccess,
     isError,
-    data,
-  } = useMutation(createNewUser, {
-    onSuccess: (data) => {
-      console.log("success!");
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log("error!");
-      console.log(error);
-    },
-  });
+  } = useMutation(createNewUser);
 
   const formik = useFormik({
     initialValues: {
