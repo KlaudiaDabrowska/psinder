@@ -4,8 +4,6 @@ import { Box, Divider, Grid } from "@mui/material";
 import { ReactNode, useState } from "react";
 
 export const DashboardTemplate = ({ children }: { children: ReactNode }) => {
-  const [selectedItem, setSelectedItem] = useState("");
-
   return (
     <>
       <Navbar />
@@ -17,7 +15,7 @@ export const DashboardTemplate = ({ children }: { children: ReactNode }) => {
       >
         <Grid container>
           <Grid item xs={12} sm={3} md={2} lg={2}>
-            <Sidebar setSelectedItem={setSelectedItem} />
+            <Sidebar />
           </Grid>
           <Grid
             item

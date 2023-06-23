@@ -3,11 +3,7 @@ import { Dispatch, SetStateAction, useContext } from "react";
 import { DrawerContext } from "@/pages/_app";
 import { SidebarMenu } from "./SidebarMenu";
 
-export const Sidebar = ({
-  setSelectedItem,
-}: {
-  setSelectedItem: Dispatch<SetStateAction<string>>;
-}) => {
+export const Sidebar = () => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
   const { toggleDrawer, isDrawerOpen } = useContext(DrawerContext);
 
@@ -17,9 +13,9 @@ export const Sidebar = ({
       open={isDrawerOpen}
       onClose={() => toggleDrawer(false)}
     >
-      <SidebarMenu setSelectedItem={setSelectedItem} />
+      <SidebarMenu />
     </Drawer>
   ) : (
-    <SidebarMenu setSelectedItem={setSelectedItem} />
+    <SidebarMenu />
   );
 };

@@ -15,7 +15,7 @@ export const UserMenuItem = ({
   dogId?: string;
 }) => {
   return (
-    <Link href={`/dashboard/${href}/${dogId}`}>
+    <Link href={dogId ? `/dashboard/${href}/${dogId}` : `/dashboard/${href}`}>
       <MenuItem onClick={handleCloseUserMenu}>
         {shouldHasAvatar && (
           <Avatar

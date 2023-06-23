@@ -32,12 +32,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 }
 
 const Account = () => {
-  const { data: sessionData, status } = useSession();
-
-  const { dogId } = useContext(DogIdContext);
-
-  console.log("DOG ID W ACCOUNT");
-  console.log(dogId);
+  const { data: sessionData } = useSession();
 
   return (
     <DashboardTemplate>

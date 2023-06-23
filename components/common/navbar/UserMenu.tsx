@@ -23,12 +23,7 @@ import { DogIdContext } from "@/pages/_app";
 export const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const { setDogId } = useContext(DogIdContext);
-
   const dogsList = useDogsListState();
-
-  console.log("dog");
-  console.log(dogsList);
 
   const { data: sessionData, status } = useSession();
 

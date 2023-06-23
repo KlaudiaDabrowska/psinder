@@ -69,8 +69,6 @@ export const AddNewDogModalForm = ({
         images: Yup.array().of(Yup.string().required("Required")),
       })}
       onSubmit={(values, { resetForm }) => {
-        console.log("VALUES");
-        console.log(values);
         addANewDogMutation({
           dogName: values.dogName,
           dogDescription: values.dogDescription,

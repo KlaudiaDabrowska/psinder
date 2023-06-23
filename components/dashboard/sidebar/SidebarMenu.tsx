@@ -11,9 +11,16 @@ import EmailIcon from "@mui/icons-material/Email";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
 import PersonIcon from "@mui/icons-material/Person";
+import { useContext } from "react";
+import { DogIdContext } from "@/pages/_app";
+import { useGetDogInfo } from "@/lib/hooks/useGetDogInfo";
 
-export const SidebarMenu = ({ setSelectedItem }: { setSelectedItem: any }) => {
+export const SidebarMenu = () => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
+
+  const { dogId } = useContext(DogIdContext);
+
+  const dogInfo = useGetDogInfo(dogId);
 
   return (
     <Box
@@ -33,7 +40,7 @@ export const SidebarMenu = ({ setSelectedItem }: { setSelectedItem: any }) => {
             />
           </Grid>
           <Grid item sx={{ display: "flex", alignItems: "center" }}>
-            Clexi
+            {dogInfo?.dog?.name}
           </Grid>
         </SidebarBtn>
       </Grid>
