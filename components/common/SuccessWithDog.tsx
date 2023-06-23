@@ -1,9 +1,9 @@
 import { Box, Container, Grid } from "@mui/material";
 import { CustomImage } from "./CustomImage";
-import error from "../../public/img/500errorDog.png";
+import success from "../../public/img/success.png";
 import { ReactNode } from "react";
 
-export const Error = ({ children }: { children: ReactNode }) => {
+export const SuccessWithDog = ({ children }: { children: ReactNode }) => {
   return (
     <Box
       sx={{
@@ -24,7 +24,7 @@ export const Error = ({ children }: { children: ReactNode }) => {
               justifyContent: "center",
             }}
           >
-            <CustomImage src={error} alt={"dog1"} />
+            <CustomImage src={success} alt={"dog1"} />
           </Grid>
           <Grid
             item

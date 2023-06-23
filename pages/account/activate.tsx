@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useMutation } from "react-query";
 import { Error } from "@/components/common/Error";
-import { Success } from "@/components/common/Success";
+import { SuccessWithDog } from "@/components/common/SuccessWithDog";
 
 const Activate = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const Activate = () => {
     <Box>
       <Navbar />
       {isSuccess && (
-        <Success>
+        <SuccessWithDog>
           <Typography
             variant="h4"
             sx={{
@@ -46,7 +46,7 @@ const Activate = () => {
             </Link>
             and enjoy all the features and benefits we have to offer.
           </Typography>
-        </Success>
+        </SuccessWithDog>
       )}
       {isError && (
         <Error>

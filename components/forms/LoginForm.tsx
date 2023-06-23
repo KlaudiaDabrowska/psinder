@@ -1,10 +1,11 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Alert, Button, Container, Grid, TextField } from "@mui/material";
+import { Button, Container, Grid, TextField } from "@mui/material";
 import { FormError } from "./FormError";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { ErrorAlert } from "../common/ErrorAlert";
 
 export const LoginForm = () => {
   const [loginError, setLoginError] = useState<boolean>(false);
@@ -85,21 +86,7 @@ export const LoginForm = () => {
               Submit
             </Button>
           </Grid>
-          {loginError && (
-            <Grid
-              item
-              xs={12}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Alert severity="error">
-                Oops! Something went wrong. Please try again.
-              </Alert>
-            </Grid>
-          )}
+          {loginError && <ErrorAlert />}
         </Grid>
       </form>
     </Container>

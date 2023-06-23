@@ -3,9 +3,9 @@ import * as Yup from "yup";
 import { Button, Container, Grid, TextField } from "@mui/material";
 import { useMutation } from "react-query";
 import { createNewUser } from "@/api/createUser";
-import Alert from "@mui/material/Alert";
 import { FormError } from "./FormError";
-import { SuccessfullRegister } from "./SuccessfullRegister";
+import { SuccessInfo } from "../common/SuccessInfo";
+import { ErrorAlert } from "../common/ErrorAlert";
 
 export const SignupForm = () => {
   const {
@@ -57,7 +57,10 @@ export const SignupForm = () => {
   return (
     <Container>
       {isSuccess ? (
-        <SuccessfullRegister />
+        <SuccessInfo>
+          Congratulations! You have successfully registered. Please check your
+          email for a verification message containing a confirmation link.
+        </SuccessInfo>
       ) : (
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>
@@ -158,21 +161,7 @@ export const SignupForm = () => {
                 Submit
               </Button>
             </Grid>
-            {isError && (
-              <Grid
-                item
-                xs={12}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Alert severity="error">
-                  Oops! Something went wrong. Please try again.
-                </Alert>
-              </Grid>
-            )}
+            {isError && <ErrorAlert />}
           </Grid>
         </form>
       )}

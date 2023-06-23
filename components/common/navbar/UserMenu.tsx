@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Button,
   Divider,
@@ -8,20 +7,23 @@ import {
   Link,
   Menu,
   MenuItem,
-  Modal,
   Tooltip,
   Typography,
 } from "@mui/material";
 import { SignupBtn } from "../SingupBtn";
 import { UserMenuItem } from "./UserMenuItem";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { signOut, useSession } from "next-auth/react";
 import WavingHandIcon from "@mui/icons-material/WavingHand";
 import { AddNewDogModalForm } from "@/components/forms/AddNewDogModalForm";
+import { useDogsListState } from "@/lib/hooks/useDogsListState";
+import { DogIdContext } from "@/pages/_app";
 
 export const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const dogsList = useDogsListState();
 
   const { data: sessionData, status } = useSession();
 
@@ -76,24 +78,24 @@ export const UserMenu = () => {
               </Typography>
             </MenuItem>
             <AddNewDogModalForm open={open} handleClose={handleClose} />
-
-            <Divider />
-            <Typography sx={{ ml: 2 }} textTransform="capitalize">
-              Your doggos:
-            </Typography>
-            <UserMenuItem
-              handleCloseUserMenu={handleCloseUserMenu}
-              shouldHasAvatar={true}
-              title="Clexi"
-              href="profile"
-            />
-            <UserMenuItem
-              handleCloseUserMenu={handleCloseUserMenu}
-              shouldHasAvatar={true}
-              title="Srexi"
-              href="profile"
-            />
-
+            {dogsList && (
+              <>
+                <Divider />
+                <Typography sx={{ ml: 2 }} textTransform="capitalize">
+                  Your doggos:
+                </Typography>
+                {dogsList?.dogs?.map((dog) => (
+                  <UserMenuItem
+                    handleCloseUserMenu={handleCloseUserMenu}
+                    shouldHasAvatar={true}
+                    title={dog.name}
+                    href="profile"
+                    dogId={dog.id}
+                    key={dog.id}
+                  />
+                ))}
+              </>
+            )}
             <Divider />
             <UserMenuItem
               handleCloseUserMenu={handleCloseUserMenu}

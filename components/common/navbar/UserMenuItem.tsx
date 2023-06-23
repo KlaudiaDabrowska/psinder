@@ -6,14 +6,16 @@ export const UserMenuItem = ({
   shouldHasAvatar,
   title,
   href,
+  dogId,
 }: {
   handleCloseUserMenu: () => void;
   shouldHasAvatar: boolean;
   title?: string;
   href: string;
+  dogId?: string;
 }) => {
   return (
-    <Link href={`/dashboard/${href}`}>
+    <Link href={dogId ? `/dashboard/${href}/${dogId}` : `/dashboard/${href}`}>
       <MenuItem onClick={handleCloseUserMenu}>
         {shouldHasAvatar && (
           <Avatar

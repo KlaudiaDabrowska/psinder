@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { NextPageContext } from "next";
-import { Error as ErrorComponent } from "@/components/common/Error";
 import { Navbar } from "@/components/common/Navbar";
+import { ErrorWithDog } from "@/components/common/ErrorWithDog";
 
-const Error = ({ statusCode }: { statusCode: number }) => {
+function Error({ statusCode }: { statusCode: number }) {
   return (
     <Box
       sx={{
@@ -28,7 +28,7 @@ const Error = ({ statusCode }: { statusCode: number }) => {
           ? `An error ${statusCode} occurred on server`
           : "An error occurred on client side"}
       </Typography>
-      <ErrorComponent>
+      <ErrorWithDog>
         <Typography
           variant="h4"
           sx={{
@@ -42,10 +42,10 @@ const Error = ({ statusCode }: { statusCode: number }) => {
           <br />
           Don`t worry, though. Please refresh the page, or contact us for help.
         </Typography>
-      </ErrorComponent>
+      </ErrorWithDog>
     </Box>
   );
-};
+}
 
 Error.getInitialProps = ({ res, err }: NextPageContext) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
