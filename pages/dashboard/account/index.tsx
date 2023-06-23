@@ -1,3 +1,4 @@
+import { useDogsListState } from "@/lib/hooks/useDogsListState";
 import { DogIdContext } from "@/pages/_app";
 import { DashboardTemplate } from "@/templates/DashboardTemplate";
 import {
@@ -34,6 +35,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 const Account = () => {
   const { data: sessionData } = useSession();
 
+  const dogsList = useDogsListState();
+
   return (
     <DashboardTemplate>
       <Container maxWidth="md" sx={{ my: 8 }}>
@@ -63,22 +66,16 @@ const Account = () => {
                 <ListItemText primary="Doggos" />
               </ListItem>
               <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 3 }}>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="/static/images/avatar/1.jpg"
-                    sx={{ width: 20, height: 20, mr: 1 }}
-                  />
-                  <ListItemText primary="Clexi" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 3 }}>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src="/static/images/avatar/1.jpg"
-                    sx={{ width: 20, height: 20, mr: 1 }}
-                  />
-                  <ListItemText primary="Srexi" />
-                </ListItemButton>
+                {dogsList?.dogs.map((dog) => (
+                  <ListItemButton sx={{ pl: 3 }} key={dog.id}>
+                    <Avatar
+                      alt="Remy Sharp"
+                      src="/static/images/avatar/1.jpg"
+                      sx={{ width: 20, height: 20, mr: 1 }}
+                    />
+                    <ListItemText primary={dog.name} />
+                  </ListItemButton>
+                ))}
               </List>
             </List>
           </Box>
