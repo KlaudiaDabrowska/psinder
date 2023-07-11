@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  Grid,
-  useMediaQuery,
-} from "@mui/material";
+import { Avatar, Box, Divider, Grid, useMediaQuery } from "@mui/material";
 import { SidebarBtn } from "./SidebarBtn";
 import EmailIcon from "@mui/icons-material/Email";
 import FavoriteIcon from "@mui/icons-material/Favorite";

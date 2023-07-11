@@ -16,32 +16,35 @@ function Error({ statusCode }: { statusCode: number }) {
       }}
     >
       <Navbar />
-      <Typography
-        variant="h4"
-        sx={{
-          m: 3,
-          textAlign: "center",
-          fontWeight: { xs: "bold", md: "normal" },
-        }}
-      >
-        {statusCode
-          ? `An error ${statusCode} occurred on server`
-          : "An error occurred on client side"}
-      </Typography>
-      <ErrorWithDog>
-        <Typography
-          variant="h4"
-          sx={{
-            mb: 3,
-            textAlign: "center",
-            fontWeight: { xs: "bold", md: "normal" },
-          }}
-        >
-          Oops! <br />
-          <br /> Something went wrong. <br />
-          <br />
-          Don`t worry, though. Please refresh the page, or contact us for help.
-        </Typography>
+      <ErrorWithDog statusCode={statusCode}>
+        {statusCode === 404 ? (
+          <Typography
+            variant="h4"
+            sx={{
+              mb: 3,
+              textAlign: "center",
+              fontWeight: { xs: "bold", md: "normal" },
+            }}
+          >
+            Oops! <br />
+            <br /> Sorry, the page not found.
+          </Typography>
+        ) : (
+          <Typography
+            variant="h4"
+            sx={{
+              mb: 3,
+              textAlign: "center",
+              fontWeight: { xs: "bold", md: "normal" },
+            }}
+          >
+            Oops! <br />
+            <br /> Something went wrong. <br />
+            <br />
+            Don`t worry, though. Please refresh the page, or contact us for
+            help.
+          </Typography>
+        )}
       </ErrorWithDog>
     </Box>
   );
