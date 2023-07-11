@@ -1,7 +1,7 @@
 import useDrawer from "@/lib/hooks/useDrawer";
 import "@/styles/globals.css";
 import { theme } from "@/styles/theme";
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import type { AppProps } from "next/app";
 import { createContext } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -38,6 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <DrawerContext.Provider value={{ isDrawerOpen, toggleDrawer }}>
           <DogIdContext.Provider value={{ dogId, setDogId: setDogIdValue }}>
+            <CssBaseline />
             <ThemeProvider theme={theme}>
               <Component {...pageProps} />
             </ThemeProvider>

@@ -4,6 +4,7 @@ export const theme = responsiveFontSizes(
   createTheme({
     palette: {
       primary: { main: "#EFE9F4" },
+      secondary: { main: "#9C27B0" },
     },
     typography: {
       fontFamily: "Lato, sans-serif",
@@ -26,7 +27,7 @@ export const theme = responsiveFontSizes(
       },
       MuiInputBase: {
         styleOverrides: {
-          root: { backgroundColor: "white" },
+          root: { backgroundColor: "#fff" },
         },
       },
     },

@@ -16,18 +16,6 @@ function Error({ statusCode }: { statusCode: number }) {
       }}
     >
       <Navbar />
-      <Typography
-        variant="h4"
-        sx={{
-          m: 3,
-          textAlign: "center",
-          fontWeight: { xs: "bold", md: "normal" },
-        }}
-      >
-        {statusCode
-          ? `An error ${statusCode} occurred on server`
-          : "An error occurred on client side"}
-      </Typography>
       <ErrorWithDog>
         <Typography
           variant="h4"

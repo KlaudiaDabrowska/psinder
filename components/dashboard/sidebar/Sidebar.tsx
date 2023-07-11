@@ -1,5 +1,5 @@
 import { Drawer, useMediaQuery } from "@mui/material";
-import { Dispatch, SetStateAction, useContext } from "react";
+import { useContext } from "react";
 import { DrawerContext } from "@/pages/_app";
 import { SidebarMenu } from "./SidebarMenu";
 

@@ -7,8 +7,8 @@ export const ErrorWithDog = ({ children }: { children: ReactNode }) => {
   return (
     <Box
       sx={{
-        background:
-          "linear-gradient(7deg, rgba(255,255,255,1) 37%, #EFE9F4 78%)",
+        // background:
+        //   "linear-gradient(7deg, rgba(255,255,255,1) 37%, #EFE9F4 78%)",
         py: { xs: 8, md: 10 },
         height: "100%",
       }}

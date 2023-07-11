@@ -1,9 +1,12 @@
 import { Navbar } from "@/components/common/Navbar";
 import { Sidebar } from "@/components/dashboard/sidebar/Sidebar";
+import { DogIdContext } from "@/pages/_app";
 import { Box, Divider, Grid } from "@mui/material";
-import { ReactNode, useState } from "react";
+import { ReactNode, useContext, useState } from "react";
 
 export const DashboardTemplate = ({ children }: { children: ReactNode }) => {
+  const { dogId } = useContext(DogIdContext);
+
   return (
     <>
       <Navbar />
@@ -14,13 +17,15 @@ export const DashboardTemplate = ({ children }: { children: ReactNode }) => {
         }}
       >
         <Grid container>
-          <Grid item xs={12} sm={3} md={2} lg={2}>
-            <Sidebar />
-          </Grid>
+          {dogId && (
+            <Grid item xs={12} sm={3} md={2} lg={2}>
+              <Sidebar />
+            </Grid>
+          )}
           <Grid
             item
             xs={12}
-            sm={10}
+            sm={dogId ? 10 : 12}
             sx={{
               display: "flex",
               justifyContent: "center",
