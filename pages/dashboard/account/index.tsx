@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { GetServerSidePropsContext } from "next";
 import { getSession, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useContext } from "react";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
@@ -67,14 +68,16 @@ const Account = () => {
               </ListItem>
               <List component="div" disablePadding>
                 {dogsList?.dogs.map((dog) => (
-                  <ListItemButton sx={{ pl: 3 }} key={dog.id}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/1.jpg"
-                      sx={{ width: 20, height: 20, mr: 1 }}
-                    />
-                    <ListItemText primary={dog.name} />
-                  </ListItemButton>
+                  <Link href={`/dashboard/profile/${dog.id}`} key={dog.id}>
+                    <ListItemButton sx={{ pl: 3 }} key={dog.id}>
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="/static/images/avatar/1.jpg"
+                        sx={{ width: 20, height: 20, mr: 1 }}
+                      />
+                      <ListItemText primary={dog.name} />
+                    </ListItemButton>
+                  </Link>
                 ))}
               </List>
             </List>
