@@ -1,8 +1,9 @@
+import { IToken } from "@/api/getImpersonateDog";
 import { getNotVotedDogs } from "@/api/getNotVotedDogs";
 import { useSession } from "next-auth/react";
 import { useQuery } from "react-query";
 
-export const useGetNotVotedDogs = (impersonateToken: string) => {
+export const useGetNotVotedDogs = (impersonateToken?: IToken) => {
   const { data: sessionData } = useSession();
 
   const { data: notVotedDogs } = useQuery(

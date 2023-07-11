@@ -11,11 +11,9 @@ const Match = () => {
 
   const notVotedDogs = useGetNotVotedDogs(impersonate);
 
-  console.log(notVotedDogs);
-
   return (
     <DashboardTemplate>
-      <div>dupa</div>
+      <div>not voted dogs</div>
     </DashboardTemplate>
   );
 };
