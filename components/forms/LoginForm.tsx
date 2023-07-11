@@ -29,7 +29,7 @@ export const LoginForm = () => {
       })
         .then(async (x) => {
           if (x?.ok) {
-            await router.push("/dashboard/account");
+            await router.push("/dashboard/chooseDog");
           } else {
             setLoginError(true);
           }

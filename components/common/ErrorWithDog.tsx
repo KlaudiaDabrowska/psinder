@@ -1,14 +1,19 @@
 import { Box, Container, Grid } from "@mui/material";
 import { CustomImage } from "./CustomImage";
-import error from "../../public/img/500errorDog.png";
+import error500 from "../../public/img/500errorDog.png";
+import error404 from "../../public/img/404error.png";
 import { ReactNode } from "react";
 
-export const ErrorWithDog = ({ children }: { children: ReactNode }) => {
+export const ErrorWithDog = ({
+  children,
+  statusCode,
+}: {
+  children: ReactNode;
+  statusCode?: number;
+}) => {
   return (
     <Box
       sx={{
-        // background:
-        //   "linear-gradient(7deg, rgba(255,255,255,1) 37%, #EFE9F4 78%)",
         py: { xs: 8, md: 10 },
         height: "100%",
       }}
@@ -24,7 +29,11 @@ export const ErrorWithDog = ({ children }: { children: ReactNode }) => {
               justifyContent: "center",
             }}
           >
-            <CustomImage src={error} alt={"dog1"} />
+            {statusCode === 404 ? (
+              <CustomImage src={error404} alt={"404error"} />
+            ) : (
+              <CustomImage src={error500} alt={"error"} />
+            )}
           </Grid>
           <Grid
             item
