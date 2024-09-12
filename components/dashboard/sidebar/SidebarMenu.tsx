@@ -24,7 +24,7 @@ export const SidebarMenu = () => {
       }}
     >
       <Grid container sx={{ mb: 2 }}>
-        <SidebarBtn href={`profile/${dogId}`}>
+        <SidebarBtn href={`/profile/${dogId}`}>
           <Grid item>
             <Avatar
               alt="doggo"
@@ -38,6 +38,10 @@ export const SidebarMenu = () => {
         </SidebarBtn>
       </Grid>
       <Divider />
+      <SidebarBtn href="match">
+        <FavoriteIcon sx={{ mr: 1 }} />
+        Match
+      </SidebarBtn>
       <SidebarBtn href="messages">
         <EmailIcon sx={{ mr: 1 }} />
         Messages
